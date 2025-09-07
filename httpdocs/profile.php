@@ -1,11 +1,7 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
-include_once 'config.php'; 
-?>
+require_once __DIR__ . '/../backend/php/config/database.php';
 
-<?php
-session_start();
-require_once BACKEND_PATH . 'config/database.php';
 
 $cpf  = $_SESSION['user_cpf'];
 $stmt = $mysqli->prepare(
@@ -18,11 +14,17 @@ $stmt->bind_result($nome, $sobrenome, $telefone, $email, $foto_perfil);
 $stmt->fetch();
 $stmt->close();
 
-$foto = $foto_perfil && file_exists("assets/uploads/$foto_perfil")
-    ? "assets/uploads/$foto_perfil"
-    : 'assets/img/defaultUser.svg';
+$uploadsFs  = __DIR__ . '/assets/uploads/';   // Caminho no disco
+$uploadsUrl = 'assets/uploads/';              // URL (relativo à página)
 
+$nomeFoto = $foto_perfil ? trim($foto_perfil) : '';
+$existe   = $nomeFoto !== '' && is_file($uploadsFs . $nomeFoto);
+
+$foto = $existe
+  ? $uploadsUrl . rawurlencode($nomeFoto)     // monta URL segura
+  : 'assets/img/defaultUser.svg';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -30,8 +32,8 @@ $foto = $foto_perfil && file_exists("assets/uploads/$foto_perfil")
 <head>
     <meta charset="UTF-8" />
     <title>Perfil do Usuário</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/user/profile.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/user/profile.css">
 	<title>Meu Perfil | Consulta Empreendimentos</title>
 </head>
 
@@ -45,6 +47,8 @@ $foto = $foto_perfil && file_exists("assets/uploads/$foto_perfil")
             <div class="foto-section">
                 <img src="<?= $foto ?>?v=<?= time() ?>" id="previewImagem" class="foto-perfil-preview"
                     alt="Foto de perfil atual">
+                <!-- DEBUG FS: <?= $uploadsFs . $nomeFoto ?> | URL: <?= $foto ?> -->
+
                 <input type="file" name="nova_foto" id="inputImagem" accept=".png,.jpg,.jpeg">
             </div>
 
@@ -107,7 +111,7 @@ $foto = $foto_perfil && file_exists("assets/uploads/$foto_perfil")
 
         showSpinner();
 
-        fetch('api/updateProfileProxy.php', {
+        fetch('../backend/php/public/updateProfile.php', {
                 method: 'POST',
                 body: formData
             })

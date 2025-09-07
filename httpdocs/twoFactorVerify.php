@@ -1,4 +1,4 @@
-<?php include_once 'config.php'; ?>
+<?php  ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>Verificação 2FA</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/user/twoFactor.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/user/twoFactor.css">
 </head>
 
 <body>
@@ -31,8 +31,8 @@
     </section>
 
     <!-- Utilitários -->
-    <script src="<?= BASE_URL ?>scripts/utilities/toast.js"></script>
-    <script src="<?= BASE_URL ?>scripts/utilities/spinner.js"></script>
+    <script src="scripts/utilities/toast.js"></script>
+    <script src="scripts/utilities/spinner.js"></script>
 
     <!-- Lógica da página -->
     <script>
@@ -42,7 +42,7 @@
 
             showSpinner();
 
-            fetch('api/twoFactorVerifyProxy.php', {
+            fetch('../backend/php/public/twoFactorVerify.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -77,7 +77,7 @@
             showSpinner();
             toast('Reenviando código...', 'info');
 
-            fetch('api/twoFactorStartProxy.php')
+            fetch('../backend/php/public/twoFactorStart.php')
                 .then(r => r.json())
                 .then(({ status, message }) => {
                     hideSpinner();

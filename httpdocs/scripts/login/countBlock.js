@@ -4,7 +4,7 @@ function mostrarBloqueio(tempoRestante) {
     const divBloqueio = document.getElementById('bloqueio-tentativas');
     if (!divBloqueio) return;
 
-    clearInterval(intervaloBloqueio); // Evita múltiplos timers
+    clearInterval(intervaloBloqueio);
 
     divBloqueio.innerHTML = `Você foi bloqueado. Tente novamente em ${formatarTempo(tempoRestante)}.`;
 

@@ -1,10 +1,10 @@
-<?php include_once 'config.php'; ?>
+<?php  ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="<?= BASE_URL ?>css/global/emManutencao.css">
+  <link rel="stylesheet" href="../httpdocs/css/global/emManutencao.css">
   <title>Site em Manutenção</title>
 <style>
 	body {

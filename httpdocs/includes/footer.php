@@ -1,4 +1,3 @@
-<!-- httpdocs/includes/footer.php -->
 <footer id="footer">
     <div class="secFooter">
         <div class="textFooter">
@@ -22,20 +21,20 @@
 <div id="modalTermos" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modalTermos')">&times;</span>
-        <iframe src="<?= BASE_URL ?>includes/modalTerms.html" width="100%" height="500px"></iframe>
+        <iframe src="includes/modalTerms.html" width="100%" height="500px"></iframe>
     </div>
 </div>
 
 <div id="modalPrivacidade" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
-        <iframe src="<?= BASE_URL ?>includes/modalPrivacy.html" width="100%" height="500px"></iframe>
+        <iframe src="includes/modalPrivacy.html" width="100%" height="500px"></iframe>
     </div>
 </div>
 
 <!-- Scripts de Utilidades -->
-<script src="<?= BASE_URL ?>scripts/utilities/accessibility.js"></script>
-<script src="<?= BASE_URL ?>scripts/utilities/modal.js"></script>
-<script src="<?= BASE_URL ?>scripts/utilities/inactivity.js"></script>
-<script src="<?= BASE_URL ?>scripts/utilities/dropdown.js"></script>
-<script src="<?= BASE_URL ?>scripts/utilities/blockMobile.js"></script>
+<script src="scripts/utilities/accessibility.js"></script>
+<script src="scripts/utilities/modal.js"></script>
+<script src="scripts/utilities/inactivity.js"></script>
+<script src="scripts/utilities/dropdown.js"></script>
+<script src="scripts/utilities/blockMobile.js"></script>

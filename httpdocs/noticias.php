@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
-include_once 'config.php'; 
+ 
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +9,8 @@ include_once 'config.php';
 <head>
     <meta charset="UTF-8">
     <title>Notícias</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/pages/noticias.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/pages/noticias.css">
 	<title>Notícias | Acompanhe as Novidades | Consulta Empreendimentos</title>
 </head>
 
@@ -23,7 +23,7 @@ include_once 'config.php';
 
 
     <script>
-    fetch('api/noticiasProxy.php')
+    fetch('../backend/php/api/apiNoticias.php')
         .then(res => res.json())
         .then(noticias => {
             const container = document.getElementById('noticias-container');
@@ -43,11 +43,6 @@ include_once 'config.php';
     </script>
 
     <?php include_once 'includes/footer.php'; ?>
-
-    <script src="../scripts/util/acessibility.js"></script>
-    <script src="../scripts/util/modal.js"></script>
-    <script src="../scripts/util/inativity.js"></script>
-    <script src="../scripts/util/dropdown.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
-include_once 'config.php'; 
+ 
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -8,8 +8,8 @@ include_once 'config.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/pages/contact.css" />
+    <link rel="stylesheet" href="../httpdocs/css/styles.css" />
+    <link rel="stylesheet" href="../httpdocs/css/pages/contact.css" />
 	<title>Fale Conosco | Consulta Empreendimentos</title>
 </head>
 
@@ -61,7 +61,7 @@ include_once 'config.php';
         showSpinner();
 
         try {
-            const res = await fetch('api/contactProxy.php', {
+            const res = await fetcg('../backend/php/public/contactProxy.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

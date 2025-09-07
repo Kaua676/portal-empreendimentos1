@@ -27,5 +27,5 @@ echo json_encode([
     'nome' => $nome ?? 'Usuário',
     'email' => $email ?? '',
     'telefone' => $telefone ?? '',
-    'foto' => $foto ? "../../assets/uploads/$foto" : null
+    'foto' => $foto ? "../../../../httpdocs/assets/uploads/$foto" : null
 ]);

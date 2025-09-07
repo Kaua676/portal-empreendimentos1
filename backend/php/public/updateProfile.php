@@ -25,8 +25,8 @@ if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] == UPLOAD_ERR_O
     if (in_array($tipo, $permitidos)) {
         $ext = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
         $novo_nome = uniqid("foto_", true) . "." . $ext;
-        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/assets/uploads/';   // -> /var/www/vhosts/kadom.com.br/httpdocs/assets/uploads/
-		if (!is_dir($uploadDir)) { mkdir($uploadDir, 0755, true); }   // cria se faltar
+        $uploadDir = __DIR__ . '../../../../httpdocs/assets/uploads/';
+		if (!is_dir($uploadDir)) { mkdir($uploadDir, 0755, true); }
 
 		$destino = $uploadDir . $novo_nome;   // move_uploaded_file() usa esse caminho
 
@@ -52,50 +52,115 @@ if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] == UPLOAD_ERR_O
 
 // Troca de senha
 $senhaAtual = $_POST['senha_atual'] ?? '';
-$novaSenha = $_POST['nova_senha'] ?? '';
-$confirmar = $_POST['confirmar_senha'] ?? '';
+$novaSenha  = $_POST['nova_senha'] ?? '';
+$confirmar  = $_POST['confirmar_senha'] ?? '';
 
-if (!empty($novaSenha) || !empty($confirmar)) {
-    if (empty($senhaAtual)) {
+// 1) normalize o CPF para só números (evita "não encontrado")
+$cpf = preg_replace('/\D/', '', $cpf);
+
+if ($novaSenha !== '' || $confirmar !== '') {
+    if ($senhaAtual === '') {
         $erros[] = "Você precisa informar sua senha atual.";
     } else {
-        // Verificar se a senha atual está correta
-        $stmtVerifica = $mysqli->prepare("SELECT senha FROM login WHERE cpf_login = ?");
-        $stmtVerifica->bind_param("s", $cpf);
-        $stmtVerifica->execute();
-        $stmtVerifica->bind_result($senhaHash);
-        $stmtVerifica->fetch();
-        $stmtVerifica->close();
-
-        if (!password_verify($senhaAtual, $senhaHash)) {
-            $erros[] = "Senha atual incorreta.";
-        } elseif ($novaSenha !== $confirmar) {
-            $erros[] = "A nova senha e a confirmação não coincidem.";
-        } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $novaSenha)) {
-            $erros[] = "A nova senha deve conter no mínimo 8 caracteres, incluindo número, letra maiúscula, minúscula e símbolo.";
+        // Buscar hash atual
+        $stmtVerifica = $mysqli->prepare("SELECT senha FROM login WHERE cpf_login = ? LIMIT 1");
+        if (!$stmtVerifica) {
+            $erros[] = "Falha ao preparar consulta (login): " . $mysqli->error;
         } else {
-            // Atualizar senha
-            $hashNova = password_hash($novaSenha, PASSWORD_DEFAULT);
-            $stmtAtualiza = $mysqli->prepare("UPDATE login SET senha = ?, must_change_pwd = 0 WHERE cpf_login = ?");
-            $stmtAtualiza->bind_param("ss", $hashNova, $cpf);
-            $stmtAtualiza->execute();
+            $stmtVerifica->bind_param("s", $cpf);
+            $stmtVerifica->execute();
+            $stmtVerifica->store_result();
 
-            // Enviar email de confirmação
-            $stmtEmail = $mysqli->prepare("SELECT email FROM pessoa_fisica WHERE cpf = ?");
-            $stmtEmail->bind_param("s", $cpf);
-            $stmtEmail->execute();
-            $stmtEmail->bind_result($email);
-            $stmtEmail->fetch();
-            $stmtEmail->close();
+            if ($stmtVerifica->num_rows === 0) {
+                $erros[] = "Conta não encontrada para este CPF.";
+            } else {
+                $stmtVerifica->bind_result($senhaHash);
+                $stmtVerifica->fetch();
+            }
+            $stmtVerifica->close();
+        }
 
-            $assunto = "Sua senha foi alterada";
-            $corpo = "Olá! Informamos que sua senha foi alterada com sucesso em nosso sistema.";
-            enviarEmail($email, $assunto, $corpo);
+        // Só segue se não houve erro até aqui
+        if (empty($erros)) {
+            $okAtual = false;
+            $rehashAntigo = false;
 
-            $mensagens[] = "Senha alterada com sucesso.";
+            // 2) verifica hash moderno
+            if (!empty($senhaHash) && password_verify($senhaAtual, $senhaHash)) {
+                $okAtual = true;
+            } else {
+                // 3) fallbacks para bases antigas (md5 ou texto puro)
+                if (is_string($senhaHash)) {
+                    // md5: 32 chars hex
+                    if (strlen($senhaHash) === 32 && ctype_xdigit($senhaHash) &&
+                        md5($senhaAtual) === strtolower($senhaHash)) {
+                        $okAtual = true;
+                        $rehashAntigo = true;
+                    }
+                    // texto puro (NÃO recomendado, mas comum em bases antigas)
+                    elseif (hash_equals($senhaHash, $senhaAtual)) {
+                        $okAtual = true;
+                        $rehashAntigo = true;
+                    }
+                }
+            }
+
+            if (!$okAtual) {
+                $erros[] = "Senha atual incorreta.";
+            } elseif ($novaSenha !== $confirmar) {
+                $erros[] = "A nova senha e a confirmação não coincidem.";
+            } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $novaSenha)) {
+                $erros[] = "A nova senha deve conter no mínimo 8 caracteres, incluindo número, letra maiúscula, minúscula e símbolo.";
+            } else {
+                // 4) Atualiza para hash moderno
+                $hashNova = password_hash($novaSenha, PASSWORD_DEFAULT);
+
+                $stmtAtualiza = $mysqli->prepare("UPDATE login SET senha = ?, must_change_pwd = 0 WHERE cpf_login = ? LIMIT 1");
+                if (!$stmtAtualiza) {
+                    $erros[] = "Falha ao preparar atualização de senha: " . $mysqli->error;
+                } else {
+                    $stmtAtualiza->bind_param("ss", $hashNova, $cpf);
+                    if (!$stmtAtualiza->execute()) {
+                        $erros[] = "Falha ao salvar nova senha: " . $stmtAtualiza->error;
+                    }
+                    $stmtAtualiza->close();
+                }
+
+                // 5) E-mail de confirmação (não bloqueia sucesso da senha)
+                if (empty($erros)) {
+                    $stmtEmail = $mysqli->prepare("SELECT email FROM pessoa_fisica WHERE cpf = ? LIMIT 1");
+                    if ($stmtEmail) {
+                        $stmtEmail->bind_param("s", $cpf);
+                        $stmtEmail->execute();
+                        $stmtEmail->bind_result($email);
+                        $stmtEmail->fetch();
+                        $stmtEmail->close();
+                    }
+
+                    if (!empty($email)) {
+                        try {
+                            $assunto = "Sua senha foi alterada";
+                            $corpo   = "Olá! Informamos que sua senha foi alterada com sucesso em nosso sistema.";
+                            // se sua enviarEmail() retorna bool, você pode checar e logar falha
+                            enviarEmail($email, $assunto, $corpo);
+                        } catch (Throwable $e) {
+                            // log opcional: error_log($e->getMessage());
+                            $mensagens[] = "Senha alterada. Não foi possível enviar o e-mail de confirmação.";
+                        }
+                    }
+
+                    // Se vinha de hash antigo, considere marcar para re-login ou só informa
+                    if ($rehashAntigo) {
+                        $mensagens[] = "Senha atualizada e formato de segurança modernizado.";
+                    } else {
+                        $mensagens[] = "Senha alterada com sucesso.";
+                    }
+                }
+            }
         }
     }
 }
+
 
 // Resposta final
 if (empty($erros)) {

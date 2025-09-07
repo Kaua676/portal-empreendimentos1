@@ -3,8 +3,7 @@ session_start();
 
 $mensagem_login = $_SESSION['login_message'] ?? null;
 unset($_SESSION['login_message']);
-
-include_once 'config.php'; ?>
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -12,8 +11,8 @@ include_once 'config.php'; ?>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/user/login.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/user/login.css">
 	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<title>Entrar | Acesso ao Sistema | Consulta Empreendimentos</title>
@@ -139,14 +138,14 @@ include_once 'config.php'; ?>
             <div id="modalTermos" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal('modalTermos')">&times;</span>
-                    <iframe src="<?= BASE_URL ?>includes/modalTerms.html" width="100%" height="500px"></iframe>
+                    <iframe src="../includes/modalTerms.html" width="100%" height="500px"></iframe>
                 </div>
             </div>
 
             <div id="modalPrivacidade" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
-                    <iframe src="<?= BASE_URL ?>includes/modalPrivacy.html" width="100%" height="500px"></iframe>
+                    <iframe src="../includes/modalPrivacy.html" width="100%" height="500px"></iframe>
                 </div>
             </div>
         </div>

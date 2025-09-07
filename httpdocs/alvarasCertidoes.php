@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
-include_once 'config.php'; 
+ 
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -8,8 +8,8 @@ include_once 'config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/pages/alvarasCertidoes.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/pages/alvarasCertidoes.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
 
 
     <title>Portal Consulta Empreendimentos</title>
@@ -59,7 +59,7 @@ include_once 'config.php';
     function buscarInscricao() {
         const formData = new FormData(document.getElementById('consultaForm'));
 
-        fetch('api/handleAlvarasProxy.php', {
+        fetcg('../backend/php/public/handleAlvarasProxy.php', {
                 method: 'POST',
                 body: formData
             })

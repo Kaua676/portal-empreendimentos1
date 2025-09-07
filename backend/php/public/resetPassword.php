@@ -1,8 +1,11 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
-session_start();
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/../config/database.php'; 
 require_once __DIR__ . '/../config/email.php';
+
+session_start();
+
 
 header('Content-Type: application/json');
 

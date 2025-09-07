@@ -1,12 +1,15 @@
-<?php include_once 'config.php'; ?>
+<?php 
+ini_set('display_errors', 0);
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8" />
     <title>Recuperar Senha</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
-	<link rel="stylesheet" href="<?= BASE_URL ?>css/user/resetPassword.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/user/resetPassword.css">
 </head>
 
 <body>
@@ -31,41 +34,43 @@
 
     <!-- Lógica da página -->
     <script>
-        document.getElementById('resetForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+    document.getElementById('resetForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            const email = document.getElementById('email').value.trim();
-            if (!email) {
-                toast('Informe seu e-mail.', 'error'); // toast.js
-                return;
+        const email = document.getElementById('email').value.trim();
+        if (!email) {
+            toast('Informe seu e-mail.', 'error'); // toast.js
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('email', email);
+
+        showSpinner(); // spinner.js
+
+        try {
+            const res = await fetch('../backend/php/public/resetPassword.php', {
+                method: 'POST',
+                body: formData
+            }).then(r => r.json());
+
+
+            hideSpinner();
+
+            toast(res.message || 'Erro ao recuperar senha.',
+                res.status === 'success' ? 'success' : 'error');
+
+            if (res.status === 'success') {
+                setTimeout(() => (window.location.href = 'login.php'), 3000);
             }
-
-            const formData = new FormData();
-            formData.append('email', email);
-
-            showSpinner(); // spinner.js
-
-            try {
-                const res = await fetch('api/resetPasswordProxy.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(r => r.json());
-
-                hideSpinner();
-
-                toast(res.message || 'Erro ao recuperar senha.',
-                    res.status === 'success' ? 'success' : 'error');
-
-                if (res.status === 'success') {
-                    setTimeout(() => (window.location.href = 'login.php'), 3000);
-                }
-            } catch (err) {
-                hideSpinner();
-                toast('Erro de conexão. Tente novamente.', 'error');
-                console.error(err);
-            }
-        });
+        } catch (err) {
+            hideSpinner();
+            toast('Erro de conexão. Tente novamente.', 'error');
+            console.error(err);
+        }
+    });
     </script>
+
 </body>
 
 </html>

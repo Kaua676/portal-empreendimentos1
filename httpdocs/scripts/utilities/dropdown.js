@@ -16,7 +16,7 @@ function toggleDropdown() {
 function logout() {
     if (confirm("Tem certeza de que deseja sair?")) {
         // Redireciona para logout.php para destruir a sessão
-        window.location.href = "api/logoutProxy.php";
+        window.location.href = "../backend/php/public/logout.php";
 
     } else {
         toggleDropdown();

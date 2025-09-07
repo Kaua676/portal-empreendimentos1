@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/database.php';
 
 header('Content-Type: application/json');
 
-$limit = 3; // define o número de notícias a serem retornadas
+$limit = 3;
 $sql = "SELECT id, titulo, imagem FROM noticias ORDER BY data_publicacao DESC LIMIT ?";
 $stmt = $mysqli->prepare($sql);
 

@@ -1,12 +1,12 @@
-<?php include_once 'config.php'; ?>
+<?php  ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8" />
     <title>Alterar Senha</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/user/forcePasswordChange.css">
+    <link rel="stylesheet" href="../httpdocs/css/styles.css">
+    <link rel="stylesheet" href="../httpdocs/css/user/forcePasswordChange.css">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
         showSpinner(); // spinner.js
 
         try {
-            const res = await fetch('api/forcePasswordChangeProxy.php', {
+            const res = await fetch('../backend/php/public/forcePasswordChange.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
