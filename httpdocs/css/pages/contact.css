@@ -1,0 +1,52 @@
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../imagens/background.jpg);
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 5rem 0;
+}
+
+#myForm {
+    width: 100%;
+}
+
+.form-contact {
+    background-color: #1769aa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.form-contact h2 {
+    color: #f5f5f5;
+    font-size: 2rem;
+}
+
+.form-contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	width: 80%;
+}
+
+.form-contact label {
+    color: #f5f5f5;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.input-secundary, .textarea-secundary{
+	width: 100%;
+	resize: none;
+}
+
+.btn-primary{
+	margin: 1rem 0;
+}

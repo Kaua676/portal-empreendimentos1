@@ -1,0 +1,66 @@
+/* Estilo da Seção */
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Estilo da Descrição */
+.descricao {
+    max-width: 80%;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 100px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 30px;
+    margin: 2rem;
+    background-color: #1769aa;
+    color: #fff;
+}
+
+.card-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Cada Card */
+.card-person {
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto;
+    background-color: #1769aa;
+    color: #fff;
+}
+
+/* Imagem no Card */
+.card-person img {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    background-color: #fff;
+    object-fit: cover;
+}
+
+/* Título do Card */
+.card-person h2 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* Parágrafo do Card */
+.card-person p {
+    font-size: 0.9rem;
+}

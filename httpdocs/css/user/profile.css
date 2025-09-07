@@ -1,0 +1,53 @@
+.perfil-container {
+    width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.perfil-container form {
+	display: flex;
+	flex-direction: column;
+}
+
+.foto-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.foto-perfil-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+	border: 2px solid #294C71;
+}
+
+.title{
+	color: #294C71;
+}
+
+.info-section, .senha-section{
+	display: flex;
+	flex-direction: column;
+}
+
+.btn-primary{
+	margin-top: 1rem;
+}
+
+label{
+	margin-top: 1rem;
+}
+
+/* Estilo para inputs desabilitados */
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+	color: #000;
+}
+
+

@@ -1,0 +1,24 @@
+.bg-primary {
+    background-color: #1769aa;
+}
+
+.bg-secondary {
+    background-color: #007bff;
+}
+
+.color-primary {
+    color: #f3f3f3;
+}
+
+.title {
+    color: #f3f3f3;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: #f3f3f3;
+    margin: 1rem 0 0.5rem 0;
+    font-weight: bold;
+    font-size: 1.25rem;
+}

@@ -1,0 +1,34 @@
+.title {
+    text-align: center;
+	color: #1769aa;
+    margin-top: 25px;
+}
+
+#noticias-container {
+    max-width: 1400px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.notice {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 50px;
+    border-bottom: 1px solid #c1c1c1;
+	cursor: pointer;
+}
+
+.notice h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.notice-img {
+    max-width: 400px;
+    padding: 20px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 25px;
+}

@@ -1,0 +1,221 @@
+/* ///////////////////////CONTEUDO/////////////////////////////////// */
+/* CARROSEL DE NOTICIAS */
+
+#noticias-carrossel {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.carousel-container {
+    position: relative;
+    width: 500px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: none;
+}
+
+.carousel-card.active {
+    opacity: 1;
+    transform: scale(1);
+    display: block;
+    position: relative;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.titulo-carrossel {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #1769aa;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.left-btn {
+    left: 15px;
+}
+
+.right-btn {
+    right: 15px;
+}
+
+/* CARDS */
+
+#section-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(../imagens/sl_101121_46080_16.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Estilo dos Cards */
+.card {
+    position: relative;
+    width: 30rem;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Efeito de Hover - Aumentar o Card */
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card a {
+    color: #000;
+}
+
+.title-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title-card img {
+    width: auto;
+    height: 150px;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+/* Imagem dos Cards */
+.title-card h2 {
+    margin: 1rem 0;
+    text-align: center;
+    transition: title 0.3 ease-in-out;
+}
+
+.card:hover .title-card {
+    transform: translateY(-70%);
+    background-color: #1769aa;
+    color: #fff;
+}
+
+.card:hover .title-card #contador {
+    font-size: 1.5rem;
+}
+
+.description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #1769aa;
+    color: white;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.description p {
+    padding-top: 1rem;
+}
+
+/* Exibir Descrição ao Passar o Mouse */
+.card:hover .description {
+    height: 80%;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        gap: 10px;
+    }
+
+    .news-card {
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+    .titulo-carrossel {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (max-width: 1400px) {
+    #section-cards {
+        flex-direction: column;
+        /* Coloca os cards em coluna em telas pequenas */
+        align-items: center;
+        /* Centraliza os cards */
+    }
+
+    .card-container {
+        gap: 20px;
+    }
+
+    /* Estilo dos Cards */
+    .card {
+        width: 25rem;
+    }
+}

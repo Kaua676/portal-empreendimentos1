@@ -1,0 +1,39 @@
+footer {
+    width: 100%;
+    background-color: #294C71;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+}
+
+.secFooter {
+    font-size: 0.75rem;
+    padding: 1.25rem;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.textFooter {
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: space-evenly;
+}
+
+.textFooter .textF a:hover {
+    text-decoration: underline;
+}
+
+body.high-contrast footer,
+body.high-contrast .secFooter,
+body.high-contrast .textFooter,
+body.high-contrast .TextFo {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+}
+
+body.high-contrast .textFooter .textF a {
+    color: #FFD700 !important;
+}

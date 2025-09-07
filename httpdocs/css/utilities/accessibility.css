@@ -1,0 +1,174 @@
+/* ========== Ícone e Menu de Acessibilidade ========== */
+.accessibility {
+    position: relative;
+    display: inline-block;
+}
+
+.accessibility img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dropdown-menu button {
+    background-color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #000;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* ========== Modo Preto e Branco ========== */
+.black-and-white {
+    filter: grayscale(100%) !important;
+}
+
+body.black-and-white .descricao,
+body.black-and-white .card-person,
+body.black-and-white .container-contador,
+body.black-and-white .container-alvaras,
+body.black-and-white .form-contact,
+body.black-and-white .container-licenciamentos,
+body.black-and-white .container-table,
+body.black-and-white .container-consulta,
+body.black-and-white #tabela,
+body.black-and-white #section-cards,
+body.black-and-white .card,
+body.black-and-white .carousel-container,
+body.black-and-white #noticia,
+body.black-and-white .notice {
+    filter: grayscale(100%) !important;
+}
+
+
+/* ========== Modo Alto Contraste (Base) ========== */
+.high-contrast {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.high-contrast a,
+.high-contrast a:visited {
+    color: #00FFFF !important;
+}
+
+.high-contrast button {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+    border: 1px solid #FFD700 !important;
+}
+
+.high-contrast input,
+.high-contrast select,
+.high-contrast textarea {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+    border: 1px solid #FFD700 !important;
+}
+
+
+/* ========== Alto Contraste: Estrutura Principal ========== */
+body.high-contrast .container-contador,
+body.high-contrast .container-alvaras,
+body.high-contrast .form-contact,
+body.high-contrast .container-licenciamentos,
+body.high-contrast .card-consulta,
+body.high-contrast .container-table,
+body.high-contrast .container-consulta,
+body.high-contrast .descricao,
+body.high-contrast .card-person {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+}
+
+
+/* ========== Alto Contraste: Inputs e Botões ========== */
+body.high-contrast .input,
+body.high-contrast .options-input,
+body.high-contrast .consultar-btn,
+body.high-contrast .form-control {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+    border: 1px solid #FFD700 !important;
+}
+
+
+/* ========== Alto Contraste: Tabela de Inscrição Municipal ========== */
+body.high-contrast #tabela,
+body.high-contrast #tabela th,
+body.high-contrast #tabela td {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+    border: 1px solid #FFD700 !important;
+}
+
+
+/* ========== Alto Contraste: Página Home (Cards e Carrossel) ========== */
+body.high-contrast #section-cards,
+body.high-contrast .card,
+body.high-contrast .description,
+body.high-contrast .carousel-container {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+    border-color: #FFD700 !important;
+}
+
+body.high-contrast .card a,
+body.high-contrast .carousel-title,
+body.high-contrast .titulo-carrossel {
+    color: #FFD700 !important;
+}
+
+body.high-contrast .card:hover .title {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+}
+
+body.high-contrast .description {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+}
+
+body.high-contrast .nav-btn {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+}
+
+
+/* ========== Alto Contraste: Página Notícia ========== */
+body.high-contrast #noticia,
+body.high-contrast .text-title,
+body.high-contrast .text-container,
+body.high-contrast .noticia-img {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+}
+
+
+/* ========== Alto Contraste: Listagem de Notícias ========== */
+body.high-contrast .notice,
+body.high-contrast .notice h2 {
+    background-color: #000 !important;
+    color: #FFD700 !important;
+}
