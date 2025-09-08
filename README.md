@@ -1,5 +1,5 @@
 
-# 📘 Portal Consulta Empreendimentos (branch prod)
+# 📘 Portal Consulta Empreendimentos
 
 Aplicação web em PHP que permite a cidadãos, empresas e contadores consultar, regularizar e acompanhar dados empresariais junto ao município. O sistema reúne autenticação segura, consultas fiscais, geração de boletos e recursos de acessibilidade.
 
