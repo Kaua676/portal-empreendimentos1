@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<p>Valor: R$ " . $row["valor"] . "</p>";
                         echo "<p>Data de Vencimento: " . $data_formatada . "</p>";
 
-                        echo "<form action='api/gerarBoletoBradescoProxy.php' method='post' target='_blank'>";
+                        echo "<form action='../backend/php/public/gerarBoletoBradesco.php' method='post' target='_blank'>";
                         echo "<input type='hidden' name='valor' value='" . $row["valor"] . "'>";
                         echo "<input type='hidden' name='descricao' value='" . $row["descricao"] . "'>";
                         echo "<input type='hidden' name='vencimento' value='" . $row["vencimento"] . "'>";

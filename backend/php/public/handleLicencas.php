@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<p>Tipo: " . $row["descricao"] . "</p>";
                         echo "<p>Número da Certidão: " . $row["numero_lic"] . "</p>";
                         echo "<p>Data de Vencimento: " . $data_formatada . "</p>";
+                        echo "<hr>";
                     }
                 } else {
                     echo "Nenhuma licença encontrada.";

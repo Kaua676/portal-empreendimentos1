@@ -2,37 +2,33 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/env.php';
 
-function enviarEmail($emailDestino, $assunto, $corpo) {
+function enviarEmail($emailDestino, $assunto, $corpo)
+{
     $mail = new PHPMailer(true);
-    $mail->isHTML(true);       // Para que o corpo seja tratado como HTML
-    $mail->CharSet = 'UTF-8';  // Para que acentuação e caracteres especiais funcionem
+    $mail->isHTML(true);
+    $mail->CharSet = 'UTF-8';
 
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Servidor SMTP
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Username = 'kauavic676@gmail.com'; // Seu e-mail
-        $mail->Password = 'ifyb hvck kahv tnml'; // Sua senha ou app password
+        $mail->Username = $_ENV['MAIL_USER'];
+        $mail->Password = $_ENV['MAIL_PASS'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        $mail->Port = $_ENV['MAIL_PORT'];
 
-        // Remetente
-        $mail->setFrom('kauavic676@gmail.com', 'Portal Consulta');
-
-        // Destinatário
+        $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
         $mail->addAddress($emailDestino);
 
-        // Assunto e Corpo
         $mail->Subject = $assunto;
-        $mail->Body    = $corpo;
+        $mail->Body = $corpo;
 
-        // Enviar
         $mail->send();
         return true;
     } catch (Exception $e) {
         return false;
     }
 }
-?>
