@@ -162,14 +162,14 @@
                 <div id="modalTermos" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal('modalTermos')">&times;</span>
-                        <iframe src="/includes/modalTerms.html" width="100%" height="500px"></iframe>
+                        <iframe src="./includes/modalTerms.html" width="100%" height="500px"></iframe>
                     </div>
                 </div>
 
                 <div id="modalPrivacidade" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
-                        <iframe src="/includes/modalPrivacy.html" width="100%" height="500px"></iframe>
+                        <iframe src="./includes/modalPrivacy.html" width="100%" height="500px"></iframe>
                     </div>
                 </div>
             </form>

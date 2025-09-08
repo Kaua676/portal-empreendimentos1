@@ -1,34 +1,21 @@
-# Ignorar arquivos compilados e temporários
-*.log
-*.tmp
-
-# Ignorar dependências de projetos
-node_modules/
-
-# Ignorar configurações locais do sistema operacional
-.DS_Store
-Thumbs.db
-
-# Ignorar arquivos específicos do editor/IDE
-.vscode/
-.idea/
-
-# Arquivos de cache e temporários
-*.log
-*.cache
-*.tmp
-
-# Configurações locais do ambiente
+# Ignorar configurações locais do ambiente
 .env
 .env.local
 *.bak
 
-# Configuração do editor/IDE
+# Ignorar dependências do projeto
+node_modules/
+vendor/
+
+# Ignorar arquivos do editor/IDE
 .vscode/
 .idea/
 *.swp
 
-# Logs e arquivos do servidor
-error_log
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.cache
 *.sql
 *.sqlite
+error_log

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
- 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -52,19 +52,19 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
 
     <!-- JS próprio da página -->
     <script>
-    function buscarInscricao() {
-        const formData = new FormData(document.getElementById('consultaForm'));
+        function buscarInscricao() {
+            const formData = new FormData(document.getElementById('consultaForm'));
 
-        fetcg('../backend/php/public/handleLicencasProxy.php', {
+            fetch('../backend/php/public/handleLicencas.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(resp => resp.text())
-            .then(html => {
-                document.getElementById('resultado').innerHTML = html;
-            })
-            .catch(() => console.error('Erro ao processar a solicitação.'));
-    }
+                .then(resp => resp.text())
+                .then(html => {
+                    document.getElementById('resultado').innerHTML = html;
+                })
+                .catch(() => console.error('Erro ao processar a solicitação.'));
+        }
     </script>
 </body>
 

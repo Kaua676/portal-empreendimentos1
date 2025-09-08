@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
- 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -10,15 +10,15 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../httpdocs/css/pages/debtCheck.css">
     <link rel="stylesheet" href="../httpdocs/css/styles.css">
-	<title>Consulta de Débitos | Verifique Situação Fiscal | Consulta Empreendimentos</title>
+    <title>Consulta de Débitos | Verifique Situação Fiscal | Consulta Empreendimentos</title>
 </head>
 
 <body>
     <?php include_once 'includes/header.php'; ?>
 
     <section class="container">
-        <form id="consultaForm" class="container-content bg-primary" action="api/gerarBoletoBradescoProxy.php"
-            method="POST" target="_blank">
+        <form id="consultaForm" class="container-content bg-primary" action="api/gerarBoletoBradesco.php" method="POST"
+            target="_blank">
 
             <h1 class="title">Consulta de Débitos</h1>
 
@@ -48,7 +48,7 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
     function buscarInscricao() {
         const formData = new FormData(document.getElementById('consultaForm'));
 
-        fetcg('../backend/php/public/handleDebitosProxy.php', {
+        fetch('../backend/php/public/handleDebitos.php', {
                 method: 'POST',
                 body: formData
             })

@@ -1,157 +1,132 @@
-# 📘 README – Portal Consulta Empreendimentos
+# 📘 Portal Consulta Empreendimentos
 
-## 📌 Visão Geral
+Aplicação web desenvolvida em PHP para que cidadãos, empresas e contadores possam consultar, regularizar e acompanhar dados empresariais junto ao município. O sistema reúne autenticação segura, consultas fiscais, geração de boletos e funcionalidades de acessibilidade.
 
-**Portal Consulta Empreendimentos** é uma aplicação web em **PHP** voltada a **cidadãos**, **empresas** e **contadores** que precisam **consultar, regularizar e acompanhar dados de empresas** junto ao município.
-
-O sistema oferece:
-
-- Cadastro e autenticação de usuários
-- Mecanismos de segurança (CAPTCHA, bloqueio, 2FA)
-- Consultas a inscrições municipais, débitos, alvarás, licenças
-- Emissão de boletos bancários e PDFs
-
----
-
-## 🏗 Estrutura do Projeto
+## 🏗 Arquitetura do Projeto
 
 ```
-Portal-Empreendimentos/
-├─ backend/
-│  ├─ php/
-│  │  ├─ api/               # Endpoints para contato e notícias
-│  │  ├─ config/            # Configuração de banco e e-mail
-│  │  ├─ public/            # APIs públicas (login, perfil, boletos, etc.)
-│  │  └─ services/          # Funções auxiliares (ex.: geração de boleto)
-│  ├─ composer.json         # Dependências PHP (PHPMailer, Dompdf, etc.)
-│  └─ vendor/               # Bibliotecas instaladas via Composer
-└─ httpdocs/
-   ├─ *.php                 # Páginas (home, login, perfil, consultas…)
-   ├─ assets/               # Imagens e uploads de usuários
-   ├─ css/                  # Estilos (Bootstrap + estilos próprios)
-   ├─ includes/             # Header/footer e modais
-   └─ scripts/              # JavaScript modular (login, cadastro, utilitários)
+portal-empreendimentos/
+├── backend/
+│   ├── php/
+│   │   ├── api/            # Endpoints públicos (contato, notícias)
+│   │   ├── config/         # Credenciais de banco e e-mail
+│   │   ├── public/         # Lógica principal de autenticação e consultas
+│   │   └── services/       # Funções auxiliares (ex.: geração de boletos)
+│   ├── composer.json       # Dependências (PHPMailer, Dompdf)
+│   └── vendor/             # Bibliotecas instaladas via Composer
+└── httpdocs/
+    ├── *.php               # Páginas da interface web
+    ├── assets/             # Imagens e uploads
+    ├── css/                # Estilos (Bootstrap + estilos próprios)
+    ├── includes/           # Cabeçalho, rodapé e modais
+    └── scripts/            # JS modular (login, cadastro, utilitários)
 ```
 
----
-
-## ✨ Funcionalidades Principais
+## ✨ Funcionalidades
 
 ### 🔐 Autenticação e Segurança
 
-- Cadastro com validação de CPF, endereço e senha forte
-- Login com **CAPTCHA**, limite de tentativas e bloqueio
-- **Autenticação em duas etapas (2FA)** via e‑mail
-- Recuperação de senha com envio de senha temporária
-- Força de troca de senha em casos específicos
-- Atualização de perfil com troca de senha e foto
+- Validação completa dos campos de login, bloqueio por tentativas e verificação de CAPTCHA  
+- Autenticação em duas etapas (2FA) via e-mail com código temporário  
+- Cadastro de usuário com validação de CPF, endereço e política de senha forte
 
 ### 🏢 Consultas Empresariais
 
-- **Inscrição Municipal**: busca por IM, CNPJ ou razão social
-- **Débitos**: listagem e geração de boletos (PDF Bradesco)
-- **Alvarás e Certidões**: consulta por tipo, número e validade
-- **Licenças**: visualização das licenças associadas
-- **Ficha Cadastral**: geração de PDF com dados e CNAEs
+- Busca de inscrição municipal por IM, CNPJ ou razão social  
+- Consulta de débitos e emissão de boleto bancário Bradesco em PDF  
+- Geração de ficha cadastral detalhada em PDF com dados e CNAEs
 
 ### 📰 Conteúdo e Comunicação
 
-- **Notícias**: carrossel e páginas detalhadas
-- **Contato**: formulário com envio de e-mail ao suporte
-- **Área do Usuário**: dados pessoais e configurações
+- Notícias com carrossel e páginas detalhadas  
+- Formulário de contato com envio de e-mail ao suporte
 
 ### ♿ Acessibilidade
 
-- Suporte a VLibras, alto contraste, fonte ampliada
-- Interface responsiva com **Bootstrap**
-
----
+- Menu com ajuste de fonte, alto contraste e modo preto e branco  
+- Integração com VLibras para tradução automática em Libras
 
 ## ⚙️ Requisitos
 
-- PHP ≥ 8.0
-- MySQL/MariaDB (banco `portalemp`)
-- Composer
-- Extensões PHP: `mysqli`, `openssl`, `mbstring`, `curl`, `intl`, etc.
-- Servidor web (Apache/Nginx) ou embutido (PHP built-in)
-- Dependências:
-  - `phpmailer/phpmailer`
-  - `dompdf/dompdf` ou `fpdf/fpdf`
+- PHP ≥ 8.0  
+- MySQL/MariaDB (banco `portalemp`)  
+- Composer  
+- Extensões PHP: `mysqli`, `openssl`, `mbstring`, `curl`, `intl`, etc.  
 
----
+**Bibliotecas principais:**
 
-## 🚀 Instalação e Configuração
+- `phpmailer/phpmailer`  
+- `dompdf/dompdf`
+
+## 🚀 Instalação
 
 ```bash
-git clone https://github.com/Kaua676/Portal-Empreendimentos.git
-cd Portal-Empreendimentos/backend
+# Clonar repositório
+git clone https://github.com/usuario/portal-empreendimentos.git
+cd portal-empreendimentos/backend
+
+# Instalar dependências PHP
 composer install
 ```
 
 ### Banco de Dados
 
-- Crie o banco `portalemp` e as tabelas (modelo não incluído)
-- Edite `backend/php/config/database.php` com as credenciais
+- Crie o banco `portalemp` e as tabelas necessárias.  
+- Configure credenciais em `backend/php/config/database.php`.
 
-### E-mail
+### E-mail (2FA, contato)
 
-- Edite `backend/php/config/email.php` com os dados SMTP
+- Ajuste parâmetros SMTP em `backend/php/config/email.php`.
 
 ### Permissões
 
-- Permitir escrita em `httpdocs/assets/uploads/`
+- Garanta permissão de escrita em `httpdocs/assets/uploads/` para upload de fotos.
 
-### Execução
+### Executar
 
 ```bash
 cd ..
 php -S localhost:8000 -t httpdocs
 ```
 
----
+- Acesse `http://localhost:8000` pelo navegador.
 
-## 📚 Uso
+## 📂 Endpoints e Páginas
 
-Acesse `http://localhost:8000` ou domínio configurado e utilize as funcionalidades via menu.
+| Rota / Script                           | Descrição                                      |
+|----------------------------------------|------------------------------------------------|
+| `loginController.php`                  | Login com CAPTCHA e bloqueio                   |
+| `twoFactorStart.php` / `twoFactorVerify.php` | Fluxo de 2FA via e-mail                   |
+| `registerUser.php`                     | Cadastro de usuário                            |
+| `handleInscricao.php`                  | Consulta de inscrições municipais              |
+| `handleDebitos.php`                    | Consulta de débitos e emissão de boletos       |
+| `generateRegistrationFormPDF.php`      | Geração de ficha cadastral em PDF              |
+| `apiContact.php`, `apiNoticia*.php`    | APIs de contato e notícias                     |
 
----
+## 🔐 Boas Práticas de Segurança
 
-## 📂 APIs e Endpoints
-
-- `loginController.php` – Login
-- `twoFactorStart.php`, `twoFactorVerify.php` – 2FA
-- `registerUser.php` – Cadastro
-- `resetPassword.php` – Recuperação
-- `handleInscricao.php` – Consulta de inscrição
-- `handleDebitos.php` – Débitos e boletos
-- `handleAlvaras.php` – Certidões e alvarás
-- `generateRegistrationFormPDF.php` – Ficha cadastral
-- `apiContact.php` – Contato
-- `apiNoticia.php`, `apiNoticiaCarrossel.php` – Notícias
-
----
-
-## 🔐 Segurança
-
-- Sanitização com `filter_input`, `preg_replace`
-- Senhas com `password_hash`
-- CAPTCHA, 2FA, e bloqueios por tentativa
-- Tokens temporários (senha, 2FA)
-
----
+- Sanitização de entradas e consultas parametrizadas  
+- Hash de senhas (`password_hash`)  
+- Tokens temporários para 2FA e redefinição de senha  
+- CAPTCHA e bloqueio após tentativas inválidas
 
 ## 🤝 Contribuição
 
-Contribuições são bem-vindas!
-
-1. Faça um fork
-2. Crie um branch (`git checkout -b feature/sua-funcionalidade`)
-3. Commit (`git commit -m 'feat: nova funcionalidade'`)
-4. Push (`git push origin feature/sua-funcionalidade`)
-5. Pull Request
-
----
+1. Faça um fork do projeto  
+2. Crie sua feature branch:  
+   ```bash
+   git checkout -b feature/minha-ideia
+   ```
+3. Commit:  
+   ```bash
+   git commit -m 'feat: minha nova ideia'
+   ```
+4. Push:  
+   ```bash
+   git push origin feature/minha-ideia
+   ```
+5. Abra um Pull Request
 
 ## 📄 Licença
 
-Projeto acadêmico/demonstrativo.
+Projeto acadêmico

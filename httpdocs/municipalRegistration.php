@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../backend/php/public/auth.php';
- 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -70,7 +70,7 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
 
         showSpinner(); // spinner.js (carregado pelo footer)
 
-        fetcg('../backend/php/public/handleInscricaoProxy.php', {
+        fetch('../backend/php/public/handleInscricao.php', {
                 method: 'POST',
                 body: new URLSearchParams({
                     opcao,
@@ -95,7 +95,7 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
 
                             <td>
                                 <a class="link-tabela"
-                                   href="api/generateRegistrationFormPDFProxy.php?im=${row.inscricao_municipal}"
+                                   href="../backend/php/public/generateRegistrationFormPDF.php?im=${row.inscricao_municipal}"
                                    target="_blank">
                                    Ficha Cadastral
                                 </a>
