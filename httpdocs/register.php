@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../httpdocs/css/user/register.css">
     <link rel="stylesheet" href="../httpdocs/css/styles.css">
-	<title>Cadastre-se | Criar Conta | Consulta Empreendimentos</title>
+    <title>Cadastre-se | Criar Conta | Consulta Empreendimentos</title>
 </head>
 
 <body>
@@ -26,18 +26,21 @@
                     <div class="input-group">
                         <div>
                             <label>Seu nome</label>
-                            <input class="input-primary" id="nome" name="nome" type="text" placeholder="Primeiro Nome" required>
+                            <input class="input-primary" id="nome" name="nome" type="text" placeholder="Primeiro Nome"
+                                required>
                         </div>
                         <div>
                             <label>Sobrenome</label>
-                            <input class="input-primary" id="sobrenome" name="sobrenome" type="text" placeholder="Sobrenome" required>
+                            <input class="input-primary" id="sobrenome" name="sobrenome" type="text"
+                                placeholder="Sobrenome" required>
                         </div>
                     </div>
 
                     <div class="input-group">
                         <div>
                             <label>CPF</label>
-                            <input class="input-primary" id="documento" name="documento" maxlength="18" placeholder="Digite seu CPF" required>
+                            <input class="input-primary" id="documento" name="documento" maxlength="18"
+                                placeholder="Digite seu CPF" required>
                             <small class="input-error" id="cpf-error"></small>
                         </div>
                         <div>
@@ -46,7 +49,8 @@
                         </div>
                         <div>
                             <label>Telefone</label>
-                            <input class="input-primary" id="number" name="number" placeholder="(xx) xxxxx-xxxx" required>
+                            <input class="input-primary" id="number" name="number" placeholder="(xx) xxxxx-xxxx"
+                                required>
                         </div>
                     </div>
                 </div>
@@ -98,26 +102,28 @@
                     <div class="input-group">
                         <div>
                             <label>E-mail</label>
-                            <input class="input-primary" id="email" name="email" type="email" placeholder="Digite seu E-mail" required>
+                            <input class="input-primary" id="email" name="email" type="email"
+                                placeholder="Digite seu E-mail" required>
                             <small class="input-error" id="email-error"></small>
                         </div>
                         <div>
                             <label>Confirmar E-mail</label>
-                            <input class="input-primary" id="confirmEmail" name="confirmEmail" type="email" placeholder="Confirme seu E-mail"
-                                required>
+                            <input class="input-primary" id="confirmEmail" name="confirmEmail" type="email"
+                                placeholder="Confirme seu E-mail" required>
                         </div>
                     </div>
 
                     <div class="input-group">
                         <div>
                             <label>Senha</label>
-                            <input class="input-primary" id="password" name="password" type="password" placeholder="••••••••" required>
+                            <input class="input-primary" id="password" name="password" type="password"
+                                placeholder="••••••••" required>
                             <small class="input-error" id="password-error"></small>
                         </div>
                         <div>
                             <label>Confirmar Senha</label>
-                            <input class="input-primary" id="confirmPassword" name="confirmPassword" type="password" placeholder="••••••••"
-                                required>
+                            <input class="input-primary" id="confirmPassword" name="confirmPassword" type="password"
+                                placeholder="••••••••" required>
                             <small class="input-error" id="confirmPassword-error"></small>
                         </div>
                     </div>
@@ -156,14 +162,14 @@
                 <div id="modalTermos" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal('modalTermos')">&times;</span>
-                        <iframe src="<?= BASE_URL ?>includes/modalTerms.html" width="100%" height="500px"></iframe>
+                        <iframe src="/includes/modalTerms.html" width="100%" height="500px"></iframe>
                     </div>
                 </div>
 
                 <div id="modalPrivacidade" class="modal">
                     <div class="modal-content">
                         <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
-                        <iframe src="<?= BASE_URL ?>includes/modalPrivacy.html" width="100%" height="500px"></iframe>
+                        <iframe src="/includes/modalPrivacy.html" width="100%" height="500px"></iframe>
                     </div>
                 </div>
             </form>

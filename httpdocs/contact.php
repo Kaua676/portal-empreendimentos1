@@ -10,7 +10,7 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../httpdocs/css/styles.css" />
     <link rel="stylesheet" href="../httpdocs/css/pages/contact.css" />
-	<title>Fale Conosco | Consulta Empreendimentos</title>
+    <title>Fale Conosco | Consulta Empreendimentos</title>
 </head>
 
 <body>
@@ -28,7 +28,8 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
                 <input class="input-secundary" type="email" name="email" placeholder="Digite seu E-mail" required />
 
                 <label>Mensagem</label>
-                <textarea class="textarea-secundary" name="message" rows="10" placeholder="Digite sua mensagem" required></textarea>
+                <textarea class="textarea-secundary" name="message" rows="10" placeholder="Digite sua mensagem"
+                    required></textarea>
 
                 <button type="submit" class="btn-primary">Enviar Mensagem</button>
             </form>
@@ -61,7 +62,7 @@ require_once __DIR__ . '/../backend/php/public/auth.php';
         showSpinner();
 
         try {
-            const res = await fetcg('../backend/php/public/contactProxy.php', {
+            const res = await fetch('../backend/php/api/apiContact.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

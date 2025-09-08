@@ -66,7 +66,7 @@ if ($password !== $confirmPassword) {
 }
 
 if (!preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>-]).{8,}$/', $password)) {
-    jsonResponse('error', 'Senha não atende aos requisitos.');
+    jsonResponse('error', message: 'Senha não atende aos requisitos.');
 }
 
 // Valida data

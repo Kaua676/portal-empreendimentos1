@@ -13,31 +13,32 @@ unset($_SESSION['login_message']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../httpdocs/css/styles.css">
     <link rel="stylesheet" href="../httpdocs/css/user/login.css">
-	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	<title>Entrar | Acesso ao Sistema | Consulta Empreendimentos</title>
-	<script>
-	  document.addEventListener("DOMContentLoaded", () => {
-		const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Entrar | Acesso ao Sistema | Consulta Empreendimentos</title>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator
+            .userAgent);
 
-		if (isMobileDevice) {
-		  window.location.href = "emManutencao.php";
-		}
-	  });
-	</script>
+        if (isMobileDevice) {
+            window.location.href = "emManutencao.php";
+        }
+    });
+    </script>
 
 </head>
 
 <body>
     <div class="container-login">
-		<?php if ($mensagem_login): ?>
-		<div id="modal-login-aviso" class="modal-login-aviso">
-		  <div class="modal-box">
-			<div class="modal-timer-bar"></div>
-			<p><?= htmlspecialchars($mensagem_login) ?></p>
-		  </div>
-		</div>
-		<?php endif; ?>
+        <?php if ($mensagem_login): ?>
+        <div id="modal-login-aviso" class="modal-login-aviso">
+            <div class="modal-box">
+                <div class="modal-timer-bar"></div>
+                <p><?= htmlspecialchars($mensagem_login) ?></p>
+            </div>
+        </div>
+        <?php endif; ?>
 
 
         <!-- WAVES -->
@@ -138,43 +139,43 @@ unset($_SESSION['login_message']);
             <div id="modalTermos" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal('modalTermos')">&times;</span>
-                    <iframe src="../includes/modalTerms.html" width="100%" height="500px"></iframe>
+                    <iframe src="/includes/modalTerms.html" width="100%" height="500px"></iframe>
                 </div>
             </div>
 
             <div id="modalPrivacidade" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal('modalPrivacidade')">&times;</span>
-                    <iframe src="../includes/modalPrivacy.html" width="100%" height="500px"></iframe>
+                    <iframe src="/includes/modalPrivacy.html" width="100%" height="500px"></iframe>
                 </div>
             </div>
         </div>
     </div>
-	
-	<script>
-	  document.addEventListener("DOMContentLoaded", () => {
-		const modal = document.getElementById("modal-login-aviso");
 
-		if (modal) {
-		  // Fecha ao clicar fora da caixa
-		  modal.addEventListener("click", (e) => {
-			if (e.target === modal) {
-			  fecharModal();
-			}
-		  });
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("modal-login-aviso");
 
-		  // Fecha automaticamente em 5 segundos
-		  setTimeout(() => {
-			fecharModal();
-		  }, 5000);
+        if (modal) {
+            // Fecha ao clicar fora da caixa
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    fecharModal();
+                }
+            });
 
-		  function fecharModal() {
-			modal.style.opacity = "0";
-			setTimeout(() => modal.remove(), 300);
-		  }
-		}
-	  });
-	</script>
+            // Fecha automaticamente em 5 segundos
+            setTimeout(() => {
+                fecharModal();
+            }, 5000);
+
+            function fecharModal() {
+                modal.style.opacity = "0";
+                setTimeout(() => modal.remove(), 300);
+            }
+        }
+    });
+    </script>
 
 
 

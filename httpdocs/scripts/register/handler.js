@@ -43,8 +43,8 @@ document
     showSpinner();
 
     try {
-      const response = await fetcg(
-        "../backend/php/public/registerUserProxy.php",
+      const response = await fetch(
+        "../backend/php/public/registerUser.php",
         {
           method: "POST",
           body: formData,
